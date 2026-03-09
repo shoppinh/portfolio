@@ -28,26 +28,61 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100"
-          : "bg-white/80 backdrop-blur-sm"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        transition: "all 0.3s ease",
+        backgroundColor: scrolled ? "rgba(5,10,15,0.97)" : "rgba(5,10,15,0.8)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(0,245,255,0.25)",
+        boxShadow: scrolled ? "0 2px 32px rgba(0,245,255,0.08)" : "none",
+      }}
     >
-      <div className="max-w-[1100px] mx-auto px-6 py-4 flex items-center justify-between">
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          padding: "0 1.5rem",
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Logo */}
         <a
           href="#home"
           onClick={(e) => {
             e.preventDefault();
             handleClick("#home");
           }}
-          className="font-semibold text-gray-900 text-lg tracking-tight hover:text-blue-600 transition-colors"
+          className="glitch"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: "1.4rem",
+            letterSpacing: "0.05em",
+            color: "var(--color-cyber-cyan)",
+            textDecoration: "none",
+            textShadow:
+              "0 0 10px var(--color-cyber-cyan), 0 0 30px rgba(0,245,255,0.3)",
+          }}
         >
-          KM<span className="text-blue-600">.</span>
+          KM<span style={{ color: "var(--color-cyber-pink)" }}>.</span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+          }}
+          className="hidden-mobile"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -56,7 +91,27 @@ export default function Navbar() {
                 e.preventDefault();
                 handleClick(link.href);
               }}
-              className="text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.78rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-cyber-muted)",
+                textDecoration: "none",
+                transition: "color 0.2s, text-shadow 0.2s",
+                position: "relative",
+              }}
+              onMouseEnter={(e) => {
+                (e.target as HTMLAnchorElement).style.color =
+                  "var(--color-cyber-cyan)";
+                (e.target as HTMLAnchorElement).style.textShadow =
+                  "0 0 8px var(--color-cyber-cyan)";
+              }}
+              onMouseLeave={(e) => {
+                (e.target as HTMLAnchorElement).style.color =
+                  "var(--color-cyber-muted)";
+                (e.target as HTMLAnchorElement).style.textShadow = "none";
+              }}
             >
               {link.label}
             </a>
@@ -66,19 +121,59 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           id="mobile-menu-btn"
-          className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
+          style={{
+            background: "none",
+            border:
+              "1px solid " +
+              (isOpen ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.3)"),
+            color: "var(--color-cyber-cyan)",
+            padding: "0.4rem 0.6rem",
+            cursor: "pointer",
+            display: "none",
+          }}
+          className="mobile-menu-btn"
         >
-          <div className="w-5 h-4 flex flex-col justify-between">
+          <div
+            style={{
+              width: "18px",
+              height: "14px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
             <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? "rotate-45 translate-y-1.5" : ""}`}
+              style={{
+                display: "block",
+                height: "1px",
+                background: "currentColor",
+                transition: "all 0.3s",
+                transform: isOpen
+                  ? "rotate(45deg) translate(5px, 5px)"
+                  : undefined,
+              }}
             />
             <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}
+              style={{
+                display: "block",
+                height: "1px",
+                background: "currentColor",
+                transition: "all 0.3s",
+                opacity: isOpen ? 0 : 1,
+              }}
             />
             <span
-              className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+              style={{
+                display: "block",
+                height: "1px",
+                background: "currentColor",
+                transition: "all 0.3s",
+                transform: isOpen
+                  ? "rotate(-45deg) translate(5px, -5px)"
+                  : undefined,
+              }}
             />
           </div>
         </button>
@@ -86,9 +181,22 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-64 pb-4" : "max-h-0"}`}
+        style={{
+          overflow: "hidden",
+          maxHeight: isOpen ? "280px" : "0",
+          transition: "max-height 0.3s ease",
+          borderTop: isOpen ? "1px solid rgba(0,245,255,0.15)" : "none",
+          backgroundColor: "rgba(5,10,15,0.98)",
+        }}
+        className="mobile-nav"
       >
-        <nav className="flex flex-col px-6 gap-1">
+        <nav
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "0.5rem 1.5rem 1rem",
+          }}
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -97,13 +205,41 @@ export default function Navbar() {
                 e.preventDefault();
                 handleClick(link.href);
               }}
-              className="py-2 text-sm text-gray-600 hover:text-blue-600 transition-colors font-medium border-b border-gray-50 last:border-0"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.8rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-cyber-muted)",
+                textDecoration: "none",
+                padding: "0.75rem 0",
+                borderBottom: "1px solid rgba(0,245,255,0.08)",
+              }}
             >
+              <span
+                style={{
+                  color: "var(--color-cyber-cyan)",
+                  marginRight: "0.5rem",
+                }}
+              >
+                &gt;
+              </span>
               {link.label}
             </a>
           ))}
         </nav>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .hidden-mobile { display: none !important; }
+          .mobile-menu-btn { display: flex !important; }
+        }
+        @media (min-width: 768px) {
+          .mobile-menu-btn { display: none !important; }
+          .mobile-nav { display: none !important; }
+        }
+      `}</style>
     </header>
   );
 }

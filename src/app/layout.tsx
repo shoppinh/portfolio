@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rajdhani, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
+const rajdhani = Rajdhani({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const shareTechMono = Share_Tech_Mono({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -36,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html
+      lang="en"
+      className={`${rajdhani.variable} ${shareTechMono.variable}`}
+    >
       <body>
         <Navbar />
         <main>{children}</main>

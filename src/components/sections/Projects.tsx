@@ -15,6 +15,7 @@ const projects = [
     link: "https://github.com/shoppinh",
     linkLabel: "GitHub Repository",
     hasPublicCode: true,
+    accentColor: "var(--color-cyber-cyan)",
   },
   {
     id: "hustle",
@@ -31,6 +32,7 @@ const projects = [
     link: null,
     linkLabel: null,
     hasPublicCode: false,
+    accentColor: "var(--color-cyber-pink)",
   },
   {
     id: "ekoin",
@@ -47,6 +49,7 @@ const projects = [
     link: null,
     linkLabel: null,
     hasPublicCode: false,
+    accentColor: "var(--color-cyber-yellow)",
   },
   {
     id: "perf-monitor",
@@ -63,82 +66,203 @@ const projects = [
     link: null,
     linkLabel: null,
     hasPublicCode: false,
+    accentColor: "var(--color-cyber-cyan)",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 border-t border-gray-50">
-      <div className="max-w-[1100px] mx-auto px-6">
-        <div className="mb-14">
-          <p className="text-blue-600 text-xs font-semibold tracking-widest uppercase mb-2">
-            Work
+    <section
+      id="projects"
+      style={{
+        padding: "6rem 0",
+        borderTop: "1px solid rgba(0,245,255,0.1)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
+      >
+        {/* Header */}
+        <div style={{ marginBottom: "3.5rem" }}>
+          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
+            &gt; SYS::WORK
           </p>
-          <h2 className="text-3xl font-bold text-gray-900">
-            Selected Projects
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "2.4rem",
+              fontWeight: 700,
+              color: "var(--color-cyber-text)",
+              letterSpacing: "0.03em",
+              marginBottom: "0.5rem",
+            }}
+          >
+            SELECTED PROJECTS
           </h2>
-          <p className="text-gray-500 mt-2">
-            Systems I&apos;ve designed and built.
+          <p style={{ color: "var(--color-cyber-muted)", fontSize: "0.85rem" }}>
+            // Systems I&apos;ve designed and built.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))",
+            gap: "1.25rem",
+          }}
+        >
           {projects.map((project) => (
             <div
               key={project.id}
               id={`project-${project.id}`}
-              className="group border border-gray-100 rounded-xl p-7 hover:border-blue-100 hover:shadow-lg hover:shadow-blue-50 transition-all duration-300 bg-white"
+              className="cyber-card"
+              style={{
+                borderRadius: "4px",
+                padding: "1.75rem",
+                borderTopColor: project.accentColor,
+                borderTopWidth: "2px",
+                position: "relative",
+                overflow: "hidden",
+              }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
-                    {project.type}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mt-3">
-                    {project.title}
-                  </h3>
-                </div>
+              {/* Corner accent */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  width: "40px",
+                  height: "40px",
+                  borderBottom: `1px solid ${project.accentColor}`,
+                  borderLeft: `1px solid ${project.accentColor}`,
+                  opacity: 0.3,
+                }}
+              />
+
+              {/* Type tag */}
+              <div style={{ marginBottom: "1rem" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.68rem",
+                    letterSpacing: "0.1em",
+                    color: project.accentColor,
+                    border: `1px solid ${project.accentColor}`,
+                    padding: "0.2rem 0.6rem",
+                    opacity: 0.8,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  [{project.type}]
+                </span>
               </div>
 
-              <p className="text-gray-600 text-sm leading-relaxed mb-5">
+              <h3
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.4rem",
+                  fontWeight: 700,
+                  color: "var(--color-cyber-text)",
+                  marginBottom: "0.75rem",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                {project.title}
+              </h3>
+
+              <p
+                style={{
+                  color: "var(--color-cyber-muted)",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.7,
+                  marginBottom: "1.25rem",
+                }}
+              >
                 {project.description}
               </p>
 
               {/* Tech stack */}
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.4rem",
+                  marginBottom: "1.25rem",
+                }}
+              >
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs font-mono text-gray-500 bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-md"
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
+                      color: "var(--color-cyber-pink)",
+                      background: "rgba(255,0,170,0.08)",
+                      border: "1px solid rgba(255,0,170,0.3)",
+                      padding: "0.2rem 0.5rem",
+                      letterSpacing: "0.05em",
+                    }}
                   >
-                    {tech}
+                    --{tech}
                   </span>
                 ))}
               </div>
 
               {/* Highlights */}
-              <ul className="space-y-1.5 mb-6">
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.4rem",
+                }}
+              >
                 {project.highlights.map((h) => (
                   <li
                     key={h}
-                    className="flex items-start gap-2 text-sm text-gray-600"
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "0.5rem",
+                      fontSize: "0.83rem",
+                      color: "var(--color-cyber-muted)",
+                      fontFamily: "var(--font-mono)",
+                    }}
                   >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0" />
+                    <span style={{ color: project.accentColor, flexShrink: 0 }}>
+                      &gt;
+                    </span>
                     {h}
                   </li>
                 ))}
               </ul>
 
-              {/* Link or confidentiality note */}
+              {/* Link or confidential */}
               {project.hasPublicCode && project.link ? (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.75rem",
+                    letterSpacing: "0.1em",
+                    color: "var(--color-cyber-cyan)",
+                    textDecoration: "none",
+                    textTransform: "uppercase",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    borderBottom: "1px solid rgba(0,245,255,0.4)",
+                    paddingBottom: "2px",
+                  }}
                 >
                   <svg
-                    className="w-4 h-4"
+                    width="12"
+                    height="12"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -151,8 +275,15 @@ export default function Projects() {
                   {project.linkLabel}
                 </a>
               ) : (
-                <span className="text-xs text-gray-400 italic">
-                  Source code confidential
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.72rem",
+                    color: "rgba(74,122,155,0.5)",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  // SOURCE CONFIDENTIAL
                 </span>
               )}
             </div>

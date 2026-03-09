@@ -1,29 +1,95 @@
 export default function About() {
   return (
-    <section id="about" className="py-24 border-t border-gray-50">
-      <div className="max-w-[1100px] mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12 items-start">
+    <section
+      id="about"
+      style={{
+        padding: "6rem 0",
+        borderTop: "1px solid rgba(0,245,255,0.1)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          padding: "0 1.5rem",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "3rem",
+            alignItems: "start",
+          }}
+        >
+          {/* Label + heading */}
           <div>
-            <p className="text-blue-600 text-xs font-semibold tracking-widest uppercase mb-2">
-              About
+            <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
+              &gt; SYS::ABOUT
             </p>
-            <h2 className="text-3xl font-bold text-gray-900">Who I am</h2>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "2.4rem",
+                fontWeight: 700,
+                color: "var(--color-cyber-text)",
+                letterSpacing: "0.03em",
+                marginBottom: 0,
+              }}
+            >
+              WHO I AM
+            </h2>
           </div>
-          <div className="md:col-span-2 space-y-4 text-gray-600 text-lg leading-relaxed">
+
+          {/* Content */}
+          <div
+            className="neon-border-left"
+            style={{
+              gridColumn: "span 2",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
+              color: "var(--color-cyber-muted)",
+              lineHeight: 1.9,
+              fontSize: "0.95rem",
+            }}
+          >
             <p>
               I am a full-stack software engineer with professional experience
               in building scalable web and mobile applications.
             </p>
             <p>
               My work focuses on modern frontend frameworks such as{" "}
-              <span className="font-medium text-gray-800">React</span> and{" "}
-              <span className="font-medium text-gray-800">Next.js</span>,
-              backend systems using{" "}
-              <span className="font-medium text-gray-800">NestJS</span> and{" "}
-              <span className="font-medium text-gray-800">ASP.NET Core</span>,
-              and cloud infrastructure automation using{" "}
-              <span className="font-medium text-gray-800">Azure DevOps</span>{" "}
-              and <span className="font-medium text-gray-800">Terraform</span>.
+              <span className="neon-cyan" style={{ fontWeight: 600 }}>
+                React
+              </span>{" "}
+              and{" "}
+              <span className="neon-cyan" style={{ fontWeight: 600 }}>
+                Next.js
+              </span>
+              , backend systems using{" "}
+              <span className="neon-pink" style={{ fontWeight: 600 }}>
+                NestJS
+              </span>{" "}
+              and{" "}
+              <span className="neon-pink" style={{ fontWeight: 600 }}>
+                ASP.NET Core
+              </span>
+              , and cloud infrastructure automation using{" "}
+              <span
+                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
+              >
+                Azure DevOps
+              </span>{" "}
+              and{" "}
+              <span
+                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
+              >
+                Terraform
+              </span>
+              .
             </p>
             <p>
               I am particularly interested in distributed systems, scalable

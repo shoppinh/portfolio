@@ -30,54 +30,163 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 border-t border-gray-50">
-      <div className="max-w-[1100px] mx-auto px-6">
-        <div className="mb-14">
-          <p className="text-blue-600 text-xs font-semibold tracking-widest uppercase mb-2">
-            Career
+    <section
+      id="experience"
+      style={{
+        padding: "6rem 0",
+        borderTop: "1px solid rgba(0,245,255,0.1)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
+      >
+        <div style={{ marginBottom: "3.5rem" }}>
+          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
+            &gt; SYS::CAREER
           </p>
-          <h2 className="text-3xl font-bold text-gray-900">Experience</h2>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "2.4rem",
+              fontWeight: 700,
+              color: "var(--color-cyber-text)",
+              letterSpacing: "0.03em",
+            }}
+          >
+            EXPERIENCE
+          </h2>
         </div>
 
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-2 bottom-2 w-px bg-gray-100 hidden sm:block" />
+        <div style={{ position: "relative" }}>
+          {/* Vertical neon timeline line */}
+          <div
+            style={{
+              position: "absolute",
+              left: "15px",
+              top: "8px",
+              bottom: "8px",
+              width: "1px",
+              background:
+                "linear-gradient(to bottom, var(--color-cyber-cyan), rgba(0,245,255,0.1))",
+              boxShadow: "0 0 6px rgba(0,245,255,0.4)",
+            }}
+          />
 
-          <div className="space-y-10">
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}
+          >
             {experiences.map((exp) => (
               <div
                 key={exp.id}
                 id={`exp-${exp.id}`}
-                className="relative sm:pl-14"
+                style={{
+                  position: "relative",
+                  paddingLeft: "52px",
+                }}
               >
-                {/* Timeline dot */}
-                <div className="hidden sm:flex absolute left-0 top-1.5 w-8 h-8 rounded-full bg-white border-2 border-gray-200 items-center justify-center">
+                {/* Timeline node */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: "4px",
+                    width: "30px",
+                    height: "30px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* Outer ring */}
                   <div
-                    className={`w-2.5 h-2.5 rounded-full ${exp.isCurrent ? "bg-blue-600" : "bg-gray-300"}`}
+                    style={{
+                      position: "absolute",
+                      width: "26px",
+                      height: "26px",
+                      border: `1px solid ${exp.isCurrent ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.2)"}`,
+                      background: "var(--color-cyber-bg)",
+                    }}
+                  />
+                  {/* Inner dot */}
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "10px",
+                      height: "10px",
+                      background: exp.isCurrent
+                        ? "var(--color-cyber-cyan)"
+                        : "rgba(0,245,255,0.25)",
+                      boxShadow: exp.isCurrent
+                        ? "0 0 10px var(--color-cyber-cyan), 0 0 20px rgba(0,245,255,0.4)"
+                        : "none",
+                      animation: exp.isCurrent
+                        ? "neon-pulse 2s ease-in-out infinite"
+                        : undefined,
+                    }}
                   />
                 </div>
 
-                <div className="group">
-                  <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+                {/* Content */}
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "0.5rem",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900">
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "1.2rem",
+                          fontWeight: 700,
+                          color: "var(--color-cyber-text)",
+                          letterSpacing: "0.04em",
+                          marginBottom: "0.15rem",
+                        }}
+                      >
                         {exp.company}
                       </h3>
-                      <p className="text-blue-600 font-medium text-sm">
+                      <p
+                        className="neon-pink"
+                        style={{
+                          fontSize: "0.8rem",
+                          fontFamily: "var(--font-mono)",
+                        }}
+                      >
                         {exp.role}
                       </p>
                     </div>
                     <span
-                      className={`text-xs font-medium px-3 py-1 rounded-full ${
-                        exp.isCurrent
-                          ? "bg-blue-50 text-blue-600"
-                          : "bg-gray-50 text-gray-500"
-                      }`}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.7rem",
+                        letterSpacing: "0.1em",
+                        padding: "0.25rem 0.75rem",
+                        border: `1px solid ${exp.isCurrent ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.15)"}`,
+                        color: exp.isCurrent
+                          ? "var(--color-cyber-cyan)"
+                          : "var(--color-cyber-muted)",
+                        background: exp.isCurrent
+                          ? "rgba(0,245,255,0.06)"
+                          : "transparent",
+                      }}
                     >
                       {exp.period}
                     </span>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.83rem",
+                      color: "var(--color-cyber-muted)",
+                      lineHeight: 1.7,
+                    }}
+                  >
                     {exp.summary}
                   </p>
                 </div>
