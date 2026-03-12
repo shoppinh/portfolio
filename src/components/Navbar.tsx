@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -34,54 +34,58 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "all 0.3s ease",
-        backgroundColor: scrolled ? "rgba(5,10,15,0.97)" : "rgba(5,10,15,0.8)",
+        height: "var(--nav-height)",
+        backgroundColor: scrolled
+          ? "rgba(255,255,255,0.97)"
+          : "rgba(255,255,255,0.92)",
         backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,245,255,0.25)",
-        boxShadow: scrolled ? "0 2px 32px rgba(0,245,255,0.08)" : "none",
+        borderBottom: "1px solid var(--border)",
+        transition: "box-shadow 0.25s var(--ease), background-color 0.25s var(--ease)",
+        boxShadow: scrolled ? "0 1px 16px rgba(0,0,0,0.06)" : "none",
       }}
     >
       <div
         style={{
-          maxWidth: "1100px",
+          maxWidth: "var(--max-layout)",
           margin: "0 auto",
-          padding: "0 1.5rem",
-          height: "64px",
+          padding: "0 var(--space-6)",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {/* Wordmark */}
         <a
           href="#home"
           onClick={(e) => {
             e.preventDefault();
             handleClick("#home");
           }}
-          className="glitch"
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-sans)",
             fontWeight: 700,
-            fontSize: "1.4rem",
-            letterSpacing: "0.05em",
-            color: "var(--color-cyber-cyan)",
+            fontSize: "1.1rem",
+            letterSpacing: "-0.03em",
+            color: "var(--text)",
             textDecoration: "none",
-            textShadow:
-              "0 0 10px var(--color-cyber-cyan), 0 0 30px rgba(0,245,255,0.3)",
+            display: "flex",
+            alignItems: "center",
+            gap: "2px",
           }}
         >
-          KM<span style={{ color: "var(--color-cyber-pink)" }}>.</span>
+          KM
+          <span style={{ color: "var(--accent)", fontWeight: 700 }}>.</span>
         </a>
 
         {/* Desktop nav */}
         <nav
+          className="nav-desktop"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
+            gap: "var(--space-8)",
           }}
-          className="hidden-mobile"
         >
           {navLinks.map((link) => (
             <a
@@ -92,25 +96,21 @@ export default function Navbar() {
                 handleClick(link.href);
               }}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.78rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--color-cyber-muted)",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: "var(--text-secondary)",
                 textDecoration: "none",
-                transition: "color 0.2s, text-shadow 0.2s",
+                transition: "color var(--duration) var(--ease)",
                 position: "relative",
               }}
               onMouseEnter={(e) => {
-                (e.target as HTMLAnchorElement).style.color =
-                  "var(--color-cyber-cyan)";
-                (e.target as HTMLAnchorElement).style.textShadow =
-                  "0 0 8px var(--color-cyber-cyan)";
+                (e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--text)";
               }}
               onMouseLeave={(e) => {
-                (e.target as HTMLAnchorElement).style.color =
-                  "var(--color-cyber-muted)";
-                (e.target as HTMLAnchorElement).style.textShadow = "none";
+                (e.currentTarget as HTMLAnchorElement).style.color =
+                  "var(--text-secondary)";
               }}
             >
               {link.label}
@@ -123,78 +123,66 @@ export default function Navbar() {
           id="mobile-menu-btn"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
+          className="nav-hamburger"
           style={{
             background: "none",
-            border:
-              "1px solid " +
-              (isOpen ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.3)"),
-            color: "var(--color-cyber-cyan)",
-            padding: "0.4rem 0.6rem",
+            border: "1px solid var(--border)",
+            borderRadius: "6px",
+            color: "var(--text-secondary)",
+            padding: "0.45rem 0.65rem",
             cursor: "pointer",
             display: "none",
+            lineHeight: 1,
           }}
-          className="mobile-menu-btn"
         >
           <div
             style={{
               width: "18px",
-              height: "14px",
+              height: "12px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
             }}
           >
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                transform: isOpen
-                  ? "rotate(45deg) translate(5px, 5px)"
-                  : undefined,
-              }}
-            />
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                opacity: isOpen ? 0 : 1,
-              }}
-            />
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                transform: isOpen
-                  ? "rotate(-45deg) translate(5px, -5px)"
-                  : undefined,
-              }}
-            />
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  height: "1.5px",
+                  background: "currentColor",
+                  borderRadius: "2px",
+                  transition: "all 0.25s var(--ease)",
+                  transform:
+                    i === 0 && isOpen
+                      ? "rotate(45deg) translate(4px, 4px)"
+                      : i === 2 && isOpen
+                      ? "rotate(-45deg) translate(4px, -4px)"
+                      : undefined,
+                  opacity: i === 1 && isOpen ? 0 : 1,
+                }}
+              />
+            ))}
           </div>
         </button>
       </div>
 
       {/* Mobile menu */}
       <div
+        className="nav-mobile"
         style={{
           overflow: "hidden",
-          maxHeight: isOpen ? "280px" : "0",
-          transition: "max-height 0.3s ease",
-          borderTop: isOpen ? "1px solid rgba(0,245,255,0.15)" : "none",
-          backgroundColor: "rgba(5,10,15,0.98)",
+          maxHeight: isOpen ? "320px" : "0",
+          transition: "max-height 0.3s var(--ease)",
+          backgroundColor: "var(--bg)",
+          borderTop: isOpen ? "1px solid var(--border)" : "none",
         }}
-        className="mobile-nav"
       >
         <nav
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "0.5rem 1.5rem 1rem",
+            padding: "var(--space-3) var(--space-6) var(--space-5)",
           }}
         >
           {navLinks.map((link) => (
@@ -206,24 +194,16 @@ export default function Navbar() {
                 handleClick(link.href);
               }}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.8rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--color-cyber-muted)",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.9rem",
+                fontWeight: 500,
+                color: "var(--text-secondary)",
                 textDecoration: "none",
                 padding: "0.75rem 0",
-                borderBottom: "1px solid rgba(0,245,255,0.08)",
+                borderBottom: "1px solid var(--border)",
+                transition: "color var(--duration) var(--ease)",
               }}
             >
-              <span
-                style={{
-                  color: "var(--color-cyber-cyan)",
-                  marginRight: "0.5rem",
-                }}
-              >
-                &gt;
-              </span>
               {link.label}
             </a>
           ))}
@@ -232,12 +212,12 @@ export default function Navbar() {
 
       <style>{`
         @media (max-width: 767px) {
-          .hidden-mobile { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
+          .nav-desktop { display: none !important; }
+          .nav-hamburger { display: flex !important; }
         }
         @media (min-width: 768px) {
-          .mobile-menu-btn { display: none !important; }
-          .mobile-nav { display: none !important; }
+          .nav-hamburger { display: none !important; }
+          .nav-mobile { display: none !important; }
         }
       `}</style>
     </header>

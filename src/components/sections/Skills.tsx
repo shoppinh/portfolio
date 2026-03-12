@@ -2,142 +2,107 @@
 
 const skillGroups = [
   {
-    label: "Programming",
+    category: "Languages",
     skills: ["JavaScript", "TypeScript", "Python", "C#"],
-    accent: "#00f5ff",
-    accentVar: "var(--color-cyber-cyan)",
-    pillClass: "skill-pill skill-pill-cyan",
   },
   {
-    label: "Frontend",
-    skills: [
-      "React",
-      "NextJS",
-      "React Native",
-      "Redux",
-      "Tailwind",
-      "Material UI",
-    ],
-    accent: "#ff00aa",
-    accentVar: "var(--color-cyber-pink)",
-    pillClass: "skill-pill skill-pill-pink",
+    category: "Frontend",
+    skills: ["React", "Next.js", "React Native", "Redux", "Tailwind CSS", "Material UI"],
   },
   {
-    label: "Backend",
-    skills: ["NestJS", "ASP.NET Core", "NodeJS"],
-    accent: "#eeff00",
-    accentVar: "var(--color-cyber-yellow)",
-    pillClass: "skill-pill skill-pill-yellow",
+    category: "Backend",
+    skills: ["NestJS", "ASP.NET Core", "Node.js"],
   },
   {
-    label: "Databases",
+    category: "Databases",
     skills: ["PostgreSQL", "MongoDB", "MySQL", "SQL Server"],
-    accent: "#00f5ff",
-    accentVar: "var(--color-cyber-cyan)",
-    pillClass: "skill-pill skill-pill-cyan",
   },
   {
-    label: "DevOps",
-    skills: ["Azure DevOps", "Terraform", "CI/CD", "Docker"],
-    accent: "#ff00aa",
-    accentVar: "var(--color-cyber-pink)",
-    pillClass: "skill-pill skill-pill-pink",
+    category: "DevOps & Cloud",
+    skills: ["Azure DevOps", "Terraform", "Docker", "CI/CD"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-      }}
-    >
-      <style>{`
-        .skill-pill {
-          font-family: var(--font-mono);
-          font-size: 0.78rem;
-          color: var(--color-cyber-muted);
-          background: rgba(0,245,255,0.04);
-          border: 1px solid rgba(0,245,255,0.15);
-          padding: 0.3rem 0.7rem;
-          letter-spacing: 0.04em;
-          cursor: default;
-          transition: all 0.2s ease;
-          display: inline-block;
-        }
-        .skill-pill-cyan:hover {
-          border-color: var(--color-cyber-cyan);
-          color: var(--color-cyber-cyan);
-          box-shadow: 0 0 8px rgba(0,245,255,0.25);
-        }
-        .skill-pill-pink:hover {
-          border-color: var(--color-cyber-pink);
-          color: var(--color-cyber-pink);
-          box-shadow: 0 0 8px rgba(255,0,170,0.25);
-        }
-        .skill-pill-yellow:hover {
-          border-color: var(--color-cyber-yellow);
-          color: var(--color-cyber-yellow);
-          box-shadow: 0 0 8px rgba(238,255,0,0.25);
-        }
-      `}</style>
-
-      <div
-        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
-      >
+    <section id="skills" className="section">
+      <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: "3.5rem" }}>
-          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-            &gt; SYS::EXPERTISE
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.4rem",
-              fontWeight: 700,
-              color: "var(--color-cyber-text)",
-              letterSpacing: "0.03em",
-            }}
-          >
-            TECHNICAL SKILLS
-          </h2>
+        <div style={{ marginBottom: "3rem", maxWidth: "var(--max-content)" }}>
+          <span className="section-label">Expertise</span>
+          <h2>Technical Skills</h2>
         </div>
 
-        {/* Grid */}
+        {/* Skills grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "2.5rem",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            gap: "var(--space-10)",
+            maxWidth: "var(--max-content)",
           }}
         >
           {skillGroups.map((group) => (
-            <div key={group.label}>
+            <div key={group.category}>
               <h3
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.15em",
+                  fontSize: "0.72rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: group.accentVar,
-                  marginBottom: "1rem",
-                  textShadow: `0 0 6px ${group.accent}`,
-                  borderBottom: `1px solid ${group.accent}50`,
-                  paddingBottom: "0.4rem",
-                  opacity: 0.9,
+                  color: "var(--muted)",
+                  marginBottom: "var(--space-4)",
+                  paddingBottom: "var(--space-3)",
+                  borderBottom: "1px solid var(--border)",
                 }}
               >
-                :: {group.label}
+                {group.category}
               </h3>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--space-2)",
+                }}
+              >
                 {group.skills.map((skill) => (
-                  <span key={skill} className={group.pillClass}>
+                  <li
+                    key={skill}
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "var(--text-secondary)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "var(--space-3)",
+                      transition: "color var(--duration) var(--ease)",
+                      cursor: "default",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLLIElement).style.color =
+                        "var(--text)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLLIElement).style.color =
+                        "var(--text-secondary)";
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "4px",
+                        height: "4px",
+                        borderRadius: "50%",
+                        background: "var(--accent)",
+                        flexShrink: 0,
+                        opacity: 0.6,
+                      }}
+                    />
                     {skill}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>

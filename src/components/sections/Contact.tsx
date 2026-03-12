@@ -3,11 +3,9 @@
 const contactLinks = [
   {
     id: "contact-email",
-    label: "EMAIL",
+    label: "Email",
     value: "mactrungkien2000@gmail.com",
     href: "mailto:mactrungkien2000@gmail.com",
-    channel: "::MAIL",
-    accent: "var(--color-cyber-cyan)",
     icon: (
       <svg
         width="18"
@@ -27,11 +25,9 @@ const contactLinks = [
   },
   {
     id: "contact-github",
-    label: "GITHUB",
+    label: "GitHub",
     value: "github.com/shoppinh",
     href: "https://github.com/shoppinh",
-    channel: "::GIT",
-    accent: "var(--color-cyber-pink)",
     icon: (
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
         <path
@@ -44,11 +40,9 @@ const contactLinks = [
   },
   {
     id: "contact-linkedin",
-    label: "LINKEDIN",
+    label: "LinkedIn",
     value: "linkedin.com/in/kien-mac-trung",
     href: "https://linkedin.com/in/kien-mac-trung-679829193",
-    channel: "::NET",
-    accent: "var(--color-cyber-yellow)",
     icon: (
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -59,47 +53,29 @@ const contactLinks = [
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-      }}
-    >
-      <div
-        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
-      >
-        <div style={{ maxWidth: "640px" }}>
-          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-            &gt; SYS::CONTACT
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.4rem",
-              fontWeight: 700,
-              color: "var(--color-cyber-text)",
-              letterSpacing: "0.03em",
-              marginBottom: "0.5rem",
-            }}
-          >
-            ESTABLISH CONNECTION
-          </h2>
+    <section id="contact" className="section">
+      <div className="container">
+        <div style={{ maxWidth: "560px" }}>
+          <span className="section-label">Get in Touch</span>
+          <h2 style={{ marginBottom: "var(--space-3)" }}>Contact</h2>
           <p
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.85rem",
-              color: "var(--color-cyber-muted)",
-              marginBottom: "2.5rem",
+              fontSize: "0.95rem",
+              color: "var(--text-secondary)",
               lineHeight: 1.7,
+              marginBottom: "var(--space-8)",
             }}
           >
-            // Whether you have a question, opportunity, or just want to say
-            hello — my inbox is always open.
+            Whether you have a question, an opportunity, or just want to connect
+            — my inbox is always open.
           </p>
 
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--space-3)",
+            }}
           >
             {contactLinks.map((item) => (
               <a
@@ -115,45 +91,33 @@ export default function Contact() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "1rem",
-                  padding: "1rem 1.25rem",
-                  background: "var(--color-cyber-surface)",
-                  border: "1px solid rgba(0,245,255,0.15)",
+                  gap: "var(--space-4)",
+                  padding: "var(--space-4) var(--space-5)",
+                  background: "var(--bg)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "8px",
                   textDecoration: "none",
-                  transition: "all 0.25s ease",
-                  position: "relative",
-                  overflow: "hidden",
+                  transition: "all var(--duration) var(--ease)",
+                  color: "var(--text-secondary)",
                 }}
                 onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = item.accent;
-                  el.style.boxShadow = `0 0 20px ${item.accent}20, inset 0 0 20px ${item.accent}06`;
+                  const el = e.currentTarget as HTMLAnchorElement;
+                  el.style.borderColor = "var(--accent)";
+                  el.style.background = "var(--accent-subtle)";
+                  el.style.color = "var(--text)";
                 }}
                 onMouseLeave={(e) => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = "rgba(0,245,255,0.15)";
-                  el.style.boxShadow = "none";
+                  const el = e.currentTarget as HTMLAnchorElement;
+                  el.style.borderColor = "var(--border)";
+                  el.style.background = "var(--bg)";
+                  el.style.color = "var(--text-secondary)";
                 }}
               >
-                {/* Left neon bar */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: "2px",
-                    background: item.accent,
-                    boxShadow: `0 0 8px ${item.accent}`,
-                  }}
-                />
-
                 {/* Icon */}
                 <div
                   style={{
-                    color: item.accent,
+                    color: "var(--muted)",
                     flexShrink: 0,
-                    marginLeft: "0.25rem",
                   }}
                 >
                   {item.icon}
@@ -164,20 +128,20 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.15em",
-                      color: item.accent,
-                      marginBottom: "0.2rem",
-                      opacity: 0.8,
+                      fontSize: "0.68rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "var(--muted)",
+                      marginBottom: "2px",
                     }}
                   >
-                    {item.channel}
+                    {item.label}
                   </p>
                   <p
                     style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.85rem",
-                      color: "var(--color-cyber-text)",
+                      fontSize: "0.9rem",
+                      color: "var(--text)",
+                      fontWeight: 500,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
@@ -192,9 +156,9 @@ export default function Contact() {
                   width="14"
                   height="14"
                   fill="none"
-                  stroke={item.accent}
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
-                  style={{ opacity: 0.6, flexShrink: 0 }}
+                  style={{ opacity: 0.4, flexShrink: 0 }}
                 >
                   <path
                     strokeLinecap="round"

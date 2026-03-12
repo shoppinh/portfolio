@@ -1,103 +1,86 @@
+"use client";
+
 export default function About() {
   return (
-    <section
-      id="about"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 1.5rem",
-        }}
-      >
+    <section id="about" className="section">
+      <div className="container">
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "3rem",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 2fr)",
+            gap: "var(--space-16)",
             alignItems: "start",
+            maxWidth: "var(--max-content)",
           }}
+          className="about-grid"
         >
           {/* Label + heading */}
           <div>
-            <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-              &gt; SYS::ABOUT
-            </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "2.4rem",
-                fontWeight: 700,
-                color: "var(--color-cyber-text)",
-                letterSpacing: "0.03em",
-                marginBottom: 0,
-              }}
-            >
-              WHO I AM
-            </h2>
+            <span className="section-label">About</span>
+            <h2 style={{ fontSize: "1.6rem" }}>Who I Am</h2>
           </div>
 
           {/* Content */}
           <div
-            className="neon-border-left"
+            className="border-accent"
             style={{
-              gridColumn: "span 2",
               display: "flex",
               flexDirection: "column",
-              gap: "1.25rem",
-              color: "var(--color-cyber-muted)",
-              lineHeight: 1.9,
+              gap: "var(--space-5)",
+              color: "var(--text-secondary)",
+              lineHeight: 1.75,
               fontSize: "0.95rem",
             }}
           >
             <p>
               I am a full-stack software engineer with professional experience
-              in building scalable web and mobile applications.
+              building scalable web and mobile applications for enterprise and
+              consumer products.
             </p>
             <p>
-              My work focuses on modern frontend frameworks such as{" "}
-              <span className="neon-cyan" style={{ fontWeight: 600 }}>
+              My focus spans modern frontend frameworks—{" "}
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 React
-              </span>{" "}
+              </strong>{" "}
               and{" "}
-              <span className="neon-cyan" style={{ fontWeight: 600 }}>
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 Next.js
-              </span>
-              , backend systems using{" "}
-              <span className="neon-pink" style={{ fontWeight: 600 }}>
+              </strong>
+              —backend services with{" "}
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 NestJS
-              </span>{" "}
+              </strong>{" "}
               and{" "}
-              <span className="neon-pink" style={{ fontWeight: 600 }}>
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 ASP.NET Core
-              </span>
+              </strong>
               , and cloud infrastructure automation using{" "}
-              <span
-                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
-              >
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 Azure DevOps
-              </span>{" "}
+              </strong>{" "}
               and{" "}
-              <span
-                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
-              >
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
                 Terraform
-              </span>
+              </strong>
               .
             </p>
             <p>
-              I am particularly interested in distributed systems, scalable
-              architectures and cloud computing.
+              I am particularly interested in distributed systems, event-driven
+              architecture, and the engineering decisions that make systems
+              reliable at scale.
             </p>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: var(--space-6) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

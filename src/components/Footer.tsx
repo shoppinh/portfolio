@@ -2,34 +2,42 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(0,245,255,0.2)",
-        boxShadow: "0 -1px 20px rgba(0,245,255,0.05)",
-        padding: "2rem 0",
-        marginTop: "4rem",
+        borderTop: "1px solid var(--border)",
+        padding: "var(--space-8) 0",
+        marginTop: "var(--space-12)",
+        backgroundColor: "var(--bg-soft)",
       }}
     >
       <div
+        className="container"
         style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 1.5rem",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          gap: "0.5rem",
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.72rem",
-          color: "var(--color-cyber-muted)",
-          letterSpacing: "0.08em",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "var(--space-4)",
         }}
       >
-        <span className="neon-cyan" style={{ opacity: 0.5 }}>
-          //
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.78rem",
+            color: "var(--muted)",
+            letterSpacing: "0.03em",
+          }}
+        >
+          © 2026 Kien Mac Trung
         </span>
-        <span>&copy; 2026 KIEN MAC TRUNG</span>
-        <span style={{ color: "rgba(0,245,255,0.2)" }}>|</span>
-        <span style={{ color: "rgba(74,122,155,0.5)" }}>
-          ALL SYSTEMS OPERATIONAL
+
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.72rem",
+            color: "var(--border)",
+            letterSpacing: "0.05em",
+          }}
+        >
+          Built with Next.js
         </span>
       </div>
     </footer>
