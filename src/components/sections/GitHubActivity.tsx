@@ -63,35 +63,16 @@ async function getGitHubStats(username: string) {
   }
 }
 
-const LANG_COLORS: Record<string, string> = {
-  TypeScript: "#3178c6",
-  JavaScript: "#f1e05a",
-  Python: "#3572a5",
-  "C#": "#178600",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
-  Dart: "#00b4ab",
-  Go: "#00add8",
-  Java: "#b07219",
-  Swift: "#f05138",
-  Kotlin: "#a97bff",
-  Rust: "#dea584",
-};
-
-function getLangColor(lang: string) {
-  return LANG_COLORS[lang] ?? "#888888";
-}
-
 export default async function GitHubActivity() {
   const username = "shoppinh";
   const stats = await getGitHubStats(username);
 
   const statItems = stats
     ? [
-        { label: "Public Repos", value: stats.repos },
-        { label: "Total Stars", value: stats.stars },
-        { label: "Total Forks", value: stats.forks },
-        { label: "Followers", value: stats.followers },
+        { label: "REP.PUBLIC", value: stats.repos },
+        { label: "STR.TOTAL", value: stats.stars },
+        { label: "FRK.TOTAL", value: stats.forks },
+        { label: "USR.FOLLOW", value: stats.followers },
       ]
     : [];
 
@@ -99,121 +80,102 @@ export default async function GitHubActivity() {
     <section id="github" className="section">
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: "3rem", maxWidth: "var(--max-content)" }}>
-          <span className="section-label">Activity</span>
-          <h2>GitHub</h2>
+        <div className="grid-editorial" style={{ marginBottom: "var(--space-12)" }}>
+          <div>
+            <span className="section-label">Telemetry</span>
+            <h2 style={{ borderBottom: "none" }}>GitHub Metrics</h2>
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "var(--font-mono)" }}>
+              Live repository statistics and language distribution.
+            </p>
+          </div>
         </div>
 
         {stats ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-5)",
-              maxWidth: "var(--max-content)",
-            }}
-          >
-            {/* Stat boxes */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
+            
+            {/* Stat Matrix */}
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
-                gap: "var(--space-4)",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap: "1px",
+                background: "var(--border)",
+                border: "1px solid var(--border)",
               }}
             >
               {statItems.map(({ label, value }) => (
                 <div
                   key={label}
-                  className="card"
-                  style={{ textAlign: "center", padding: "var(--space-5)" }}
+                  style={{
+                    background: "var(--bg)",
+                    padding: "var(--space-6)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "var(--space-2)"
+                  }}
                 >
-                  <p
-                    style={{
-                      fontSize: "2rem",
-                      fontWeight: 700,
-                      color: "var(--text)",
-                      letterSpacing: "-0.04em",
-                      lineHeight: 1,
-                      marginBottom: "var(--space-2)",
-                    }}
-                  >
-                    {value}
-                  </p>
                   <p
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: "0.7rem",
                       color: "var(--muted)",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.08em",
+                      margin: 0,
                     }}
                   >
-                    {label}
+                    [{label}]
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: 700,
+                      color: "var(--text)",
+                      margin: 0,
+                      lineHeight: 1
+                    }}
+                  >
+                    {value}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Top languages */}
+            {/* Top Languages */}
             {stats.topLanguages.length > 0 && (
-              <div className="card">
+              <div style={{ borderTop: "1px solid var(--border)", paddingTop: "var(--space-6)" }}>
                 <h3
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "0.72rem",
+                    fontSize: "0.75rem",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     color: "var(--muted)",
                     marginBottom: "var(--space-5)",
-                    paddingBottom: "var(--space-3)",
-                    borderBottom: "1px solid var(--border)",
                   }}
                 >
-                  Most used languages
+                  <span style={{ color: "var(--accent)" }}>{"//"}</span> LANGUAGE_DISTRIBUTION
                 </h3>
 
-                {/* Segmented bar */}
-                <div
-                  style={{
-                    display: "flex",
-                    height: "5px",
-                    marginBottom: "var(--space-5)",
-                    gap: "2px",
-                    borderRadius: "4px",
-                    overflow: "hidden",
-                  }}
-                >
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-4)" }}>
                   {stats.topLanguages.map(({ lang, pct }) => (
                     <div
                       key={lang}
-                      style={{
-                        width: `${pct}%`,
-                        backgroundColor: getLangColor(lang),
+                      style={{ 
+                        display: "flex", 
+                        alignItems: "center", 
+                        gap: "var(--space-2)",
+                        background: "var(--surface)",
+                        padding: "var(--space-2) var(--space-3)",
+                        border: "1px solid var(--border)"
                       }}
-                      title={`${lang}: ${pct}%`}
-                    />
-                  ))}
-                </div>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-5)" }}>
-                  {stats.topLanguages.map(({ lang, pct }) => (
-                    <div
-                      key={lang}
-                      style={{ display: "flex", alignItems: "center", gap: "var(--space-2)" }}
                     >
                       <span
                         style={{
-                          width: "10px",
-                          height: "10px",
-                          borderRadius: "50%",
-                          background: getLangColor(lang),
-                          flexShrink: 0,
-                        }}
-                      />
-                      <span
-                        style={{
-                          fontSize: "0.85rem",
+                          fontSize: "0.80rem",
+                          fontFamily: "var(--font-mono)",
                           color: "var(--text-secondary)",
+                          textTransform: "uppercase"
                         }}
                       >
                         {lang}
@@ -222,7 +184,7 @@ export default async function GitHubActivity() {
                         style={{
                           fontFamily: "var(--font-mono)",
                           fontSize: "0.75rem",
-                          color: "var(--muted)",
+                          color: "var(--accent)",
                         }}
                       >
                         {pct}%
@@ -233,35 +195,23 @@ export default async function GitHubActivity() {
               </div>
             )}
 
-            {/* Profile link */}
-            <div>
+            {/* Action */}
+            <div style={{ marginTop: "var(--space-4)" }}>
               <a
                 href={`https://github.com/${username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary"
-                style={{ textDecoration: "none" }}
+                className="btn"
+                style={{ padding: "var(--space-3) var(--space-6)", fontSize: "0.8rem", textTransform: "uppercase", letterSpacing: "0.05em" }}
               >
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    fillRule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                View GitHub Profile
+                ACCESS_GITHUB_PROFILE
               </a>
             </div>
+
           </div>
         ) : (
-          <p
-            style={{
-              fontSize: "0.875rem",
-              color: "var(--muted)",
-              fontFamily: "var(--font-mono)",
-            }}
-          >
-            GitHub stats unavailable.
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--red)", borderLeft: "2px solid var(--red)", paddingLeft: "var(--space-4)" }}>
+            ERR_FETCH_FAILED: Unable to retrieve telemetry data.
           </p>
         )}
       </div>

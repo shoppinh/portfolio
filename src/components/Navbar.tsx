@@ -35,13 +35,10 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         height: "var(--nav-height)",
-        backgroundColor: scrolled
-          ? "rgba(255,255,255,0.97)"
-          : "rgba(255,255,255,0.92)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid var(--border)",
-        transition: "box-shadow 0.25s var(--ease), background-color 0.25s var(--ease)",
-        boxShadow: scrolled ? "0 1px 16px rgba(0,0,0,0.06)" : "none",
+        backgroundColor: scrolled ? "var(--surface)" : "transparent",
+        borderBottom: "1px solid",
+        borderColor: scrolled ? "var(--border)" : "transparent",
+        transition: "background-color 0.3s var(--ease), border-color 0.3s var(--ease)",
       }}
     >
       <div
@@ -55,7 +52,7 @@ export default function Navbar() {
           justifyContent: "space-between",
         }}
       >
-        {/* Wordmark */}
+        {/* Brutalist Wordmark */}
         <a
           href="#home"
           onClick={(e) => {
@@ -63,19 +60,27 @@ export default function Navbar() {
             handleClick("#home");
           }}
           style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 700,
-            fontSize: "1.1rem",
-            letterSpacing: "-0.03em",
+            fontFamily: "var(--font-display)",
+            fontWeight: 800,
+            fontSize: "1.25rem",
+            letterSpacing: "-0.05em",
             color: "var(--text)",
             textDecoration: "none",
             display: "flex",
             alignItems: "center",
-            gap: "2px",
+            textTransform: "uppercase",
           }}
         >
-          KM
-          <span style={{ color: "var(--accent)", fontWeight: 700 }}>.</span>
+          K<span style={{ color: "var(--accent)" }}>M</span>T
+          <span style={{ 
+            fontFamily: "var(--font-mono)", 
+            fontSize: "0.6rem", 
+            marginLeft: "var(--space-2)",
+            color: "var(--muted)",
+            fontWeight: "normal"
+          }}>
+            [SYS_RDY]
+          </span>
         </a>
 
         {/* Desktop nav */}
@@ -84,10 +89,10 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "var(--space-8)",
+            gap: "var(--space-6)",
           }}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
@@ -96,29 +101,43 @@ export default function Navbar() {
                 handleClick(link.href);
               }}
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.875rem",
-                fontWeight: 500,
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.75rem",
                 color: "var(--text-secondary)",
                 textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
                 transition: "color var(--duration) var(--ease)",
-                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--space-2)",
+                borderBottom: "none",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--text)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+                (e.currentTarget.querySelector('.nav-index') as HTMLElement).style.color = "var(--accent)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--text-secondary)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-secondary)";
+                (e.currentTarget.querySelector('.nav-index') as HTMLElement).style.color = "var(--muted)";
               }}
             >
+              <span 
+                className="nav-index"
+                style={{ 
+                  fontSize: "0.65rem", 
+                  color: "var(--muted)",
+                  transition: "color var(--duration) var(--ease)"
+                }}
+              >
+                0{index + 1}
+              </span>
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger (Industrial lines) */}
         <button
           id="mobile-menu-btn"
           onClick={() => setIsOpen(!isOpen)}
@@ -126,40 +145,37 @@ export default function Navbar() {
           className="nav-hamburger"
           style={{
             background: "none",
-            border: "1px solid var(--border)",
-            borderRadius: "6px",
-            color: "var(--text-secondary)",
-            padding: "0.45rem 0.65rem",
+            border: "none",
+            color: "var(--text)",
             cursor: "pointer",
             display: "none",
-            lineHeight: 1,
+            padding: "var(--space-2)",
           }}
         >
           <div
             style={{
-              width: "18px",
-              height: "12px",
+              width: "24px",
+              height: "10px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
             }}
           >
-            {[0, 1, 2].map((i) => (
+            {[0, 1].map((i) => (
               <span
                 key={i}
                 style={{
                   display: "block",
-                  height: "1.5px",
+                  height: "2px",
                   background: "currentColor",
-                  borderRadius: "2px",
-                  transition: "all 0.25s var(--ease)",
+                  transition: "all 0.3s var(--ease)",
                   transform:
                     i === 0 && isOpen
-                      ? "rotate(45deg) translate(4px, 4px)"
-                      : i === 2 && isOpen
-                      ? "rotate(-45deg) translate(4px, -4px)"
+                      ? "rotate(45deg) translate(2px, 2px)"
+                      : i === 1 && isOpen
+                      ? "rotate(-45deg) translate(4px, -3px)"
                       : undefined,
-                  opacity: i === 1 && isOpen ? 0 : 1,
+                  transformOrigin: "left center"
                 }}
               />
             ))}
@@ -167,25 +183,25 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Drop down severe box */}
       <div
         className="nav-mobile"
         style={{
           overflow: "hidden",
-          maxHeight: isOpen ? "320px" : "0",
-          transition: "max-height 0.3s var(--ease)",
-          backgroundColor: "var(--bg)",
-          borderTop: isOpen ? "1px solid var(--border)" : "none",
+          maxHeight: isOpen ? "400px" : "0",
+          transition: "max-height 0.4s var(--ease)",
+          backgroundColor: "var(--surface)",
+          borderBottom: isOpen ? "1px solid var(--border)" : "none",
         }}
       >
         <nav
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "var(--space-3) var(--space-6) var(--space-5)",
+            padding: "var(--space-6)",
           }}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
@@ -194,17 +210,23 @@ export default function Navbar() {
                 handleClick(link.href);
               }}
               style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.9rem",
-                fontWeight: 500,
-                color: "var(--text-secondary)",
+                fontFamily: "var(--font-display)",
+                fontSize: "2rem",
+                fontWeight: 800,
+                color: "var(--text)",
                 textDecoration: "none",
-                padding: "0.75rem 0",
+                textTransform: "uppercase",
+                padding: "var(--space-3) 0",
                 borderBottom: "1px solid var(--border)",
-                transition: "color var(--duration) var(--ease)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               {link.label}
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.875rem", color: "var(--accent)" }}>
+                0{index + 1}
+              </span>
             </a>
           ))}
         </nav>

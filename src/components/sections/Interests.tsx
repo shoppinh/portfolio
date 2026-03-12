@@ -2,39 +2,29 @@
 
 const interests = [
   {
-    id: "distributed-systems",
+    id: "DISTRIBUTED_SYS",
     title: "Distributed Systems",
-    description:
-      "Designing fault-tolerant systems that scale horizontally across multiple nodes.",
-    icon: "⚡",
+    description: "Designing fault-tolerant systems scaling horizontally across multiple operational nodes.",
   },
   {
-    id: "cloud-computing",
+    id: "CLOUD_NAT",
     title: "Cloud Computing",
-    description:
-      "Leveraging cloud-native infrastructure for scalable, cost-efficient deployments.",
-    icon: "☁",
+    description: "Orchestrating cloud-native infrastructure for aggressive, scalable deployments.",
   },
   {
-    id: "software-architecture",
-    title: "Software Architecture",
-    description:
-      "Crafting clean, modular architectures that balance complexity with maintainability.",
-    icon: "🏗",
+    id: "SOFT_ARCH",
+    title: "System Architecture",
+    description: "Drafting strict, modular architectures balancing severe complexity with ultimate maintainability.",
   },
   {
-    id: "microservices",
+    id: "MICRO_SVCS",
     title: "Microservices",
-    description:
-      "Breaking monoliths into independently deployable, loosely coupled services.",
-    icon: "⚙",
+    description: "Fracturing monoliths into independently deployable, brutally decoupled services.",
   },
   {
-    id: "scalable-backend",
-    title: "Scalable Backend Systems",
-    description:
-      "Building high-throughput APIs and data pipelines designed to handle demanding loads.",
-    icon: "📈",
+    id: "HIGH_TPUT",
+    title: "Scalable Backends",
+    description: "Engineering high-throughput data pipelines designed to withstand absolute load.",
   },
 ];
 
@@ -43,61 +33,66 @@ export default function Interests() {
     <section id="interests" className="section">
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: "3rem", maxWidth: "var(--max-content)" }}>
-          <span className="section-label">Research Interests</span>
-          <h2>Engineering Focus Areas</h2>
+        <div className="grid-editorial" style={{ marginBottom: "var(--space-12)" }}>
+          <div>
+            <span className="section-label">Research_Domains</span>
+            <h2 style={{ borderBottom: "none" }}>Engineering Focus</h2>
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "var(--font-mono)" }}>
+              Core focus vectors.
+            </p>
+          </div>
         </div>
 
-        {/* Grid */}
+        {/* Data Grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-            gap: "var(--space-4)",
-            maxWidth: "var(--max-content)",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "1px",
+            background: "var(--border)",
+            border: "1px solid var(--border)",
           }}
         >
-          {interests.map((item) => (
+          {interests.map((item, index) => (
             <div
               key={item.id}
-              id={`interest-${item.id}`}
-              className="card"
-              style={{ cursor: "default" }}
+              className="fade-up"
+              style={{
+                background: "var(--bg)",
+                padding: "var(--space-8) var(--space-6)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-4)",
+                animationDelay: `${index * 0.1}s`
+              }}
             >
-              {/* Icon */}
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  background: "var(--accent-subtle)",
-                  border: "1px solid rgba(37,99,235,0.15)",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.2rem",
-                  marginBottom: "var(--space-4)",
-                }}
-              >
-                {item.icon}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h3
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: 800,
+                    color: "var(--text)",
+                    margin: 0,
+                    letterSpacing: "-0.02em",
+                    textTransform: "uppercase"
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "var(--muted)" }}>
+                  [{item.id}]
+                </span>
               </div>
-
-              <h3
-                style={{
-                  fontSize: "0.95rem",
-                  fontWeight: 600,
-                  color: "var(--text)",
-                  marginBottom: "var(--space-3)",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {item.title}
-              </h3>
+              
               <p
                 style={{
                   fontSize: "0.85rem",
                   color: "var(--text-secondary)",
-                  lineHeight: 1.65,
+                  lineHeight: 1.6,
+                  margin: 0,
+                  fontFamily: "var(--font-mono)"
                 }}
               >
                 {item.description}

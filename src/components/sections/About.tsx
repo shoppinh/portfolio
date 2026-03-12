@@ -4,83 +4,46 @@ export default function About() {
   return (
     <section id="about" className="section">
       <div className="container">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 2fr)",
-            gap: "var(--space-16)",
-            alignItems: "start",
-            maxWidth: "var(--max-content)",
-          }}
-          className="about-grid"
-        >
+        <div className="grid-editorial">
           {/* Label + heading */}
           <div>
-            <span className="section-label">About</span>
-            <h2 style={{ fontSize: "1.6rem" }}>Who I Am</h2>
+            <span className="section-label">Identity_Module</span>
+            <h2 style={{ borderBottom: "none", marginBottom: "var(--space-4)" }}>Who I Am</h2>
+            <div style={{ width: "40px", height: "2px", background: "var(--accent)", marginBottom: "var(--space-8)" }} />
           </div>
 
           {/* Content */}
           <div
-            className="border-accent"
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "var(--space-5)",
-              color: "var(--text-secondary)",
-              lineHeight: 1.75,
-              fontSize: "0.95rem",
+              gap: "var(--space-6)",
+              paddingLeft: "var(--space-6)",
+              borderLeft: "1px solid var(--border)",
             }}
           >
-            <p>
-              I am a full-stack software engineer with professional experience
-              building scalable web and mobile applications for enterprise and
-              consumer products.
+            <p style={{ fontSize: "1.2rem", color: "var(--text)", lineHeight: 1.6, maxWidth: "100%" }}>
+              I am a full-stack software engineer with professional experience building resilient web and mobile applications for enterprise environments.
             </p>
-            <p>
-              My focus spans modern frontend frameworks—{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                React
-              </strong>{" "}
-              and{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                Next.js
-              </strong>
-              —backend services with{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                NestJS
-              </strong>{" "}
-              and{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                ASP.NET Core
-              </strong>
-              , and cloud infrastructure automation using{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                Azure DevOps
-              </strong>{" "}
-              and{" "}
-              <strong style={{ color: "var(--text)", fontWeight: 600 }}>
-                Terraform
-              </strong>
-              .
+            
+            <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
+              My engineering focus is distributed across modern frontend architectures—<strong style={{ color: "var(--accent)" }}>React</strong> and <strong style={{ color: "var(--accent)" }}>Next.js</strong>—and scalable backend services powered by <strong style={{ color: "var(--text)" }}>NestJS</strong> and <strong style={{ color: "var(--text)" }}>ASP.NET Core</strong>. 
+              I automate cloud infrastructure seamlessly using <span className="tag">Azure DevOps</span> and <span className="tag">Terraform</span>.
             </p>
-            <p>
-              I am particularly interested in distributed systems, event-driven
-              architecture, and the engineering decisions that make systems
-              reliable at scale.
+            
+            <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
+              I am obsessed with distributed systems, event-driven architectures, and the severe, uncompromising engineering decisions required to make systems reliable under absolute scale.
             </p>
+
+            <div style={{ marginTop: "var(--space-4)" }}>
+              <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
+                <span className="tag" style={{ color: "var(--text)" }}>[STATUS] ACTIVE_SEEKING</span>
+                <span className="tag" style={{ color: "var(--text)" }}>[BASE] VIETNAM_HANOI</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .about-grid {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-6) !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

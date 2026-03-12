@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono } from "next/font/google";
+import { Syne, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const geist = Geist({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-syne",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -19,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Kien Mac Trung — Software Engineer",
   description:
-    "Portfolio of Kien Mac Trung, full-stack developer specialized in scalable systems, microservices, and modern frontend architecture.",
+    "Portfolio of Kien Mac Trung, specializing in scalable systems, microservices, and modern frontend architecture.",
   keywords: [
     "software engineer",
     "full-stack developer",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kien Mac Trung — Software Engineer",
     description:
-      "Portfolio of Kien Mac Trung, full-stack developer specialized in scalable systems, microservices, and modern frontend architecture.",
+      "Portfolio of Kien Mac Trung, specializing in scalable systems, microservices, and modern frontend architecture.",
     type: "website",
   },
 };
@@ -45,9 +46,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${jetbrainsMono.variable}`}
+      className={`${syne.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <div className="noise-overlay" />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -1,188 +1,230 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="home"
       style={{
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: "center",
         paddingTop: "var(--nav-height)",
         backgroundColor: "var(--bg)",
+        position: "relative",
       }}
     >
       <div
         className="container"
         style={{
-          padding: "5rem var(--space-6) 4rem",
+          padding: "var(--space-10) var(--space-6) var(--space-20)",
+          position: "relative",
+          zIndex: 2,
         }}
       >
-        <div style={{ maxWidth: "640px" }}>
-          {/* Eyebrow label */}
-          <span className="section-label fade-up">
-            Full-Stack Software Engineer
-          </span>
-
-          {/* Name */}
-          <h1
-            className="fade-up-1"
-            style={{
-              fontSize: "clamp(2.5rem, 7vw, 3.5rem)",
-              fontWeight: 700,
-              color: "var(--text)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              marginBottom: "var(--space-4)",
+        <div style={{ maxWidth: "100%", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+          {/* Eyebrow - Tech Specs Style */}
+          <div 
+            className="fade-up"
+            style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "var(--space-4)", 
+              marginBottom: "var(--space-6)" 
             }}
           >
-            Kien Mac Trung
+            <span 
+              className="tag" 
+              style={{ 
+                color: "var(--accent)", 
+                borderColor: "var(--accent)",
+                padding: "2px 6px" 
+              }}
+            >
+              SYS.ACTIVE
+            </span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--muted)" }}>
+              LOC://VIETNAM_REMOTE
+            </span>
+          </div>
+
+          {/* Massive Typography Name */}
+          <h1
+            style={{
+              fontSize: "clamp(3.5rem, 12vw, 10rem)",
+              fontWeight: 800,
+              color: "var(--text)",
+              letterSpacing: "-0.04em",
+              lineHeight: 0.85,
+              textTransform: "uppercase",
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              marginLeft: "-0.5vw" // optical alignment
+            }}
+          >
+            <div className={`reveal-text ${mounted ? 'is-visible' : ''}`} style={{ overflow: "hidden" }}>
+              <span>KIEN MAC</span>
+            </div>
+            <div className={`reveal-text ${mounted ? 'is-visible' : ''}`} style={{ overflow: "hidden" }}>
+              <span style={{ transitionDelay: "0.1s", color: "var(--text)" }}>TRUNG</span>
+            </div>
+            <div className={`reveal-text ${mounted ? 'is-visible' : ''}`} style={{ overflow: "hidden" }}>
+              <span style={{ 
+                transitionDelay: "0.2s", 
+                WebkitTextStroke: "1px var(--text-secondary)", 
+                color: "transparent" 
+              }}>
+                ENGINEER
+              </span>
+            </div>
           </h1>
 
-          {/* Accent divider */}
-          <div className="divider fade-up-1" />
-
-          {/* Description */}
-          <p
-            className="fade-up-2"
-            style={{
-              fontSize: "1.05rem",
-              lineHeight: 1.75,
-              color: "var(--text-secondary)",
-              marginBottom: "var(--space-8)",
-              maxWidth: "520px",
-            }}
-          >
-            Software engineer with 4+ years of experience building scalable web
-            and mobile systems. Focused on distributed systems, cloud
-            computing, and modern frontend architecture.
-          </p>
-
-          {/* CTAs */}
-          <div
-            className="fade-up-3"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "var(--space-3)",
-              alignItems: "center",
-            }}
-          >
-            <a
-              id="hero-view-projects"
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .querySelector("#projects")
-                  ?.scrollIntoView({ behavior: "smooth" });
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "1fr", 
+            gap: "var(--space-8)", 
+            marginTop: "var(--space-12)",
+            borderTop: "1px solid var(--border)",
+            paddingTop: "var(--space-8)"
+          }}>
+            {/* Description */}
+            <p
+              className="fade-up-2"
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.6,
+                color: "var(--text-secondary)",
+                maxWidth: "600px",
+                margin: 0,
               }}
-              className="btn btn-primary"
             >
-              View Projects
-              <svg
-                width="14"
-                height="14"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              Building scalable infrastructure and relentless frontends. Focused on creating uncompromising digital experiences through precise engineering and aggressive design. 
+            </p>
+
+            {/* CTAs */}
+            <div
+              className="fade-up-3"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "var(--space-4)",
+                alignItems: "center",
+              }}
+            >
+              <a
+                id="hero-view-projects"
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="btn btn-accent"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
+                Execute: View Projects
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
 
-            <a
-              id="hero-contact"
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .querySelector("#contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="btn btn-secondary"
-            >
-              Contact
-            </a>
-
-            <span
-              style={{
-                width: "1px",
-                height: "24px",
-                background: "var(--border)",
-                display: "inline-block",
-              }}
-            />
-
-            <a
-              id="hero-github"
-              href="https://github.com/shoppinh"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "var(--space-2)",
-                fontSize: "0.875rem",
-                color: "var(--muted)",
-                textDecoration: "none",
-                transition: "color var(--duration) var(--ease)",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--text)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--muted)")
-              }
-            >
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  fillRule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              GitHub
-            </a>
-
-            <a
-              id="hero-linkedin"
-              href="https://linkedin.com/in/kien-mac-trung-679829193"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "var(--space-2)",
-                fontSize: "0.875rem",
-                color: "var(--muted)",
-                textDecoration: "none",
-                transition: "color var(--duration) var(--ease)",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--text)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--muted)")
-              }
-            >
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-              LinkedIn
-            </a>
+              <a
+                id="hero-contact"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="btn"
+              >
+                Init: Contact
+              </a>
+            </div>
+            
+            {/* Social Links Grid */}
+            <div className="fade-up-4" style={{ display: "flex", gap: "var(--space-6)", marginTop: "var(--space-4)" }}>
+              <a
+                id="hero-github"
+                href="https://github.com/shoppinh"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  color: "var(--muted)",
+                  textDecoration: "none",
+                  textTransform: "uppercase",
+                  borderBottom: "1px solid transparent",
+                  paddingBottom: "2px",
+                  transition: "color var(--duration) var(--ease), border-color var(--duration) var(--ease)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "var(--text)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--muted)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "transparent";
+                }}
+              >
+                {/* GitHub */}
+                [GITHUB]
+              </a>
+              <a
+                id="hero-linkedin"
+                href="https://linkedin.com/in/kien-mac-trung-679829193"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  color: "var(--muted)",
+                  textDecoration: "none",
+                  textTransform: "uppercase",
+                  borderBottom: "1px solid transparent",
+                  paddingBottom: "2px",
+                  transition: "color var(--duration) var(--ease), border-color var(--duration) var(--ease)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "var(--text)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--muted)";
+                  (e.currentTarget as HTMLAnchorElement).style.borderBottomColor = "transparent";
+                }}
+              >
+                {/* LinkedIn */}
+                [LINKEDIN]
+              </a>
+            </div>
           </div>
         </div>
       </div>
+      
+      {/* Background structural lines */}
+      <div style={{
+        position: "absolute",
+        top: 0, right: "20%", width: "1px", height: "100%",
+        background: "var(--border)",
+        zIndex: 1,
+        opacity: 0.5
+      }} />
+      <div style={{
+        position: "absolute",
+        top: "60%", right: 0, width: "30%", height: "1px",
+        background: "var(--border)",
+        zIndex: 1,
+        opacity: 0.5
+      }} />
     </section>
   );
 }
