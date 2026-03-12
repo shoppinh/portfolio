@@ -3,23 +3,23 @@
 const skillGroups = [
   {
     category: "SYS.LANGUAGES",
-    skills: ["TypeScript", "JavaScript", "Python", "C#"],
+    skills: ["TypeScript", "JavaScript", "Python", "C#", "SQL"],
   },
   {
     category: "SYS.FRONTEND",
-    skills: ["React", "Next.js", "React Native", "TailwindCSS"],
+    skills: ["React", "Next.js", "React Native", "Redux", "TailwindCSS"],
   },
   {
     category: "SYS.BACKEND",
-    skills: ["NestJS", "ASP.NET Core", "Node.js", "Express"],
+    skills: ["NestJS", "ASP.NET Core", "Node.js", "PostgreSQL", "MongoDB", "MySQL"],
   },
   {
-    category: "SYS.DATA",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "SQL Server"],
+    category: "SYS.INFRA",
+    skills: ["Azure Cloud", "GCP", "Kubernetes", "Docker", "Terraform"],
   },
   {
-    category: "SYS.OPS",
-    skills: ["Docker", "Terraform", "Azure DevOps", "CI/CD"],
+    category: "SYS.PIPELINE",
+    skills: ["Azure DevOps", "Jenkins", "CI/CD", "Grafana Stack"],
   },
 ];
 

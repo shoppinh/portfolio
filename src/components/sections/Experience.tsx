@@ -7,7 +7,7 @@ const experiences = [
     role: "Full‑Stack Developer",
     period: "2022 — Present",
     summary:
-      "Engineering scalable web and mobile applications for enterprise clients. Architecting frontend solutions and designing backend microservices with severe performance requirements.",
+      "Engineered scalable e-commerce platforms and high-traffic backend services using NestJS and ASP.NET Core. Optimized infrastructure availability through Azure DevOps automation and Terraform-led IaaS deployments.",
     isCurrent: true,
   },
   {
@@ -16,7 +16,7 @@ const experiences = [
     role: "Frontend Developer",
     period: "2021 — 2022",
     summary:
-      "Constructed and maintained precise frontend interfaces for client-facing systems. Implemented rigorous responsive layouts and component libraries.",
+      "Constructed high-performance web interfaces with modern JavaScript frameworks. Focused on cross-browser compatibility and sub-second load optimizations for client-facing systems.",
     isCurrent: false,
   },
   {
@@ -25,7 +25,7 @@ const experiences = [
     role: "Web Dev Intern",
     period: "2020",
     summary:
-      "Assimilated into production environments, contributing aggressive optimizations to web development projects.",
+      "Assimilated into production workflows, developing monitoring interfaces for autonomous driving systems. Implemented real-time data visualization using Java and HTML/CSS/JS.",
     isCurrent: false,
   },
 ];

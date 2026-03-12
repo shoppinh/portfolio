@@ -23,7 +23,7 @@ export default function About() {
             }}
           >
             <p style={{ fontSize: "1.2rem", color: "var(--text)", lineHeight: 1.6, maxWidth: "100%" }}>
-              I am a full-stack software engineer with professional experience building resilient web and mobile applications for enterprise environments.
+              I am a full-stack software engineer with more than four years of professional experience building resilient web and mobile applications for enterprise environments.
             </p>
             
             <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
@@ -32,7 +32,8 @@ export default function About() {
             </p>
             
             <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
-              I am obsessed with distributed systems, event-driven architectures, and the severe, uncompromising engineering decisions required to make systems reliable under absolute scale.
+              I am obsessed with distributed systems, cloud computing, and the severe, uncompromising engineering decisions required to make systems reliable under absolute scale. 
+              Currently seeking to deepen theoretical knowledge through graduate studies in computer science.
             </p>
 
             <div style={{ marginTop: "var(--space-4)" }}>

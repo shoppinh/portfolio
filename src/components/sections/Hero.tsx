@@ -60,11 +60,11 @@ export default function Hero() {
           {/* Massive Typography Name */}
           <h1
             style={{
-              fontSize: "clamp(3.5rem, 12vw, 10rem)",
+              fontSize: "clamp(3rem, min(11vw, 20vh), 8.5rem)",
               fontWeight: 800,
               color: "var(--text)",
               letterSpacing: "-0.04em",
-              lineHeight: 0.85,
+              lineHeight: 0.82,
               textTransform: "uppercase",
               margin: 0,
               display: "flex",
