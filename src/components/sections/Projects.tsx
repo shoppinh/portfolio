@@ -32,6 +32,23 @@ const projects = [
     hasPublicCode: false,
   },
   {
+    id: "heineken",
+    type: "Mobile App",
+    title: "Heineken Boring Phone",
+    description:
+      "Frontend Architecture for Heineken’s digital minimalism device. Engineered high-performance React Native features (notification muting, retro-optics) optimized for extreme resource efficiency. Drove 12% user adoption within two weeks.",
+    stack: ["React Native", "TypeScript", "Mobile Systems"],
+    highlights: [
+      "Optimized for extreme resource efficiency",
+      "Specialized retro-inspired mobile features",
+      "12% adoption within 14-day launch window",
+    ],
+    link: null,
+    linkLabel: null,
+    hasPublicCode: false,
+  },
+
+  {
     id: "ekoin",
     type: "Web App",
     title: "eKoin Loyalty",
@@ -47,6 +64,22 @@ const projects = [
     linkLabel: null,
     hasPublicCode: false,
   },
+  {
+    id: "smart-inventory",
+    type: "Web App",
+    title: "Smart Inventory",
+    description:
+      "A modern inventory management system for supply chains built with NextJS, TailwindCSS, Shadcn UI, Zustand, and Drizzle ORM.",
+    stack: ["Next.js", "TailwindCSS", "Zustand", "Drizzle ORM"],
+    highlights: [
+      "Modern inventory management tailored for supply chains",
+      "Built with high-performance Next.js architectures",
+      "Integrated with Shadcn UI and Zustand for state management",
+    ],
+    link: "https://github.com/shoppinh/fullstack-smart-inventory",
+    linkLabel: "GitHub",
+    hasPublicCode: true,
+  },
 ];
 
 export default function Projects() {
@@ -54,13 +87,23 @@ export default function Projects() {
     <section id="projects" className="section">
       <div className="container">
         {/* Header */}
-        <div className="grid-editorial" style={{ marginBottom: "var(--space-12)" }}>
+        <div
+          className="grid-editorial"
+          style={{ marginBottom: "var(--space-12)" }}
+        >
           <div>
             <span className="section-label">Log.Projects</span>
             <h2 style={{ borderBottom: "none" }}>Systems Built</h2>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end" }}>
-            <p style={{ margin: 0, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            <p
+              style={{
+                margin: 0,
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+              }}
+            >
               Selected architecture catalog.
             </p>
           </div>
@@ -72,14 +115,34 @@ export default function Projects() {
             <div
               key={project.id}
               className="row-item fade-up"
-              style={{ paddingTop: "var(--space-8)", paddingBottom: "var(--space-8)", animationDelay: `${index * 0.1}s` }}
+              style={{
+                paddingTop: "var(--space-8)",
+                paddingBottom: "var(--space-8)",
+                animationDelay: `${index * 0.1}s`,
+              }}
             >
               {/* Type Grid */}
-              <div style={{ flex: "0 0 200px", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
-                <span className="tag" style={{ alignSelf: "flex-start", color: "var(--text)" }}>
+              <div
+                style={{
+                  flex: "0 0 200px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--space-2)",
+                }}
+              >
+                <span
+                  className="tag"
+                  style={{ alignSelf: "flex-start", color: "var(--text)" }}
+                >
                   {project.type}
                 </span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--muted)" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.7rem",
+                    color: "var(--muted)",
+                  }}
+                >
                   ID: {project.id.toUpperCase()}
                 </span>
               </div>
@@ -99,12 +162,58 @@ export default function Projects() {
                 >
                   {project.title}
                 </h3>
-                
-                <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: "80%", marginBottom: "var(--space-4)" }}>
+
+                <p
+                  style={{
+                    fontSize: "0.95rem",
+                    color: "var(--text-secondary)",
+                    maxWidth: "80%",
+                    marginBottom: "var(--space-4)",
+                  }}
+                >
                   {project.description}
                 </p>
 
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-2)" }}>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: "0 0 var(--space-6) 0",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "var(--space-1)",
+                  }}
+                >
+                  {project.highlights.map((highlight, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.75rem",
+                        color: "var(--text-secondary)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "var(--space-2)",
+                        opacity: 0.8,
+                      }}
+                    >
+                      <span
+                        style={{ color: "var(--accent)", fontSize: "0.6rem" }}
+                      >
+                        ▶
+                      </span>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "var(--space-2)",
+                  }}
+                >
                   {project.stack.map((tech) => (
                     <span key={tech} className="tag">
                       {tech}
@@ -114,15 +223,27 @@ export default function Projects() {
               </div>
 
               {/* Action Grid */}
-              <div style={{ flex: "0 0 150px", display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  flex: "0 0 150px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  justifyContent: "space-between",
+                }}
+              >
                 {project.hasPublicCode && project.link ? (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-accent"
-                    style={{ padding: "var(--space-2) var(--space-4)", fontSize: "0.7rem" }}
-                  >EXEC:{project.linkLabel}
+                    style={{
+                      padding: "var(--space-2) var(--space-4)",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    EXEC:{project.linkLabel}
                   </a>
                 ) : (
                   <span
@@ -132,7 +253,8 @@ export default function Projects() {
                       color: "var(--border-hover)",
                       border: "1px solid var(--border)",
                       padding: "var(--space-2) var(--space-3)",
-                      background: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px)"
+                      background:
+                        "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px)",
                     }}
                   >
                     ACCESS_DENIED
