@@ -210,7 +210,7 @@ export default async function GitHubActivity() {
 
           </div>
         ) : (
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--red)", borderLeft: "2px solid var(--red)", paddingLeft: "var(--space-4)" }}>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--accent)", borderLeft: "2px solid var(--accent)", paddingLeft: "var(--space-4)" }}>
             ERR_FETCH_FAILED: Unable to retrieve telemetry data.
           </p>
         )}

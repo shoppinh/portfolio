@@ -1,5 +1,3 @@
-"use client";
-
 const projects = [
   {
     id: "syncnsweat",
@@ -74,7 +72,7 @@ export default function Projects() {
             <div
               key={project.id}
               className="row-item fade-up"
-              style={{ padding: "var(--space-8) 0", animationDelay: `${index * 0.1}s` }}
+              style={{ paddingTop: "var(--space-8)", paddingBottom: "var(--space-8)", animationDelay: `${index * 0.1}s` }}
             >
               {/* Type Grid */}
               <div style={{ flex: "0 0 200px", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
@@ -108,7 +106,7 @@ export default function Projects() {
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-2)" }}>
                   {project.stack.map((tech) => (
-                    <span key={tech} className="tag tag-accent">
+                    <span key={tech} className="tag">
                       {tech}
                     </span>
                   ))}
@@ -124,8 +122,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className="btn btn-accent"
                     style={{ padding: "var(--space-2) var(--space-4)", fontSize: "0.7rem" }}
-                  >
-                     EXEC:{project.linkLabel}
+                  >EXEC:{project.linkLabel}
                   </a>
                 ) : (
                   <span

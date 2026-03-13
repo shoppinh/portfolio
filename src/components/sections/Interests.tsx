@@ -1,5 +1,3 @@
-"use client";
-
 const interests = [
   {
     id: "DISTRIBUTED_SYS",
