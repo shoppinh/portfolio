@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -34,56 +34,65 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "all 0.3s ease",
-        backgroundColor: scrolled ? "rgba(5,10,15,0.97)" : "rgba(5,10,15,0.8)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,245,255,0.25)",
-        boxShadow: scrolled ? "0 2px 32px rgba(0,245,255,0.08)" : "none",
+        height: "var(--nav-height)",
+        backgroundColor: scrolled ? "var(--surface)" : "transparent",
+        borderBottom: "1px solid",
+        borderColor: scrolled ? "var(--border)" : "transparent",
+        transition: "background-color 0.3s var(--ease), border-color 0.3s var(--ease)",
       }}
     >
       <div
         style={{
-          maxWidth: "1100px",
+          maxWidth: "var(--max-layout)",
           margin: "0 auto",
-          padding: "0 1.5rem",
-          height: "64px",
+          padding: "0 var(--space-6)",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {/* Brutalist Wordmark */}
         <a
           href="#home"
           onClick={(e) => {
             e.preventDefault();
             handleClick("#home");
           }}
-          className="glitch"
           style={{
             fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: "1.4rem",
-            letterSpacing: "0.05em",
-            color: "var(--color-cyber-cyan)",
+            fontWeight: 800,
+            fontSize: "1.25rem",
+            letterSpacing: "-0.05em",
+            color: "var(--text)",
             textDecoration: "none",
-            textShadow:
-              "0 0 10px var(--color-cyber-cyan), 0 0 30px rgba(0,245,255,0.3)",
+            display: "flex",
+            alignItems: "center",
+            textTransform: "uppercase",
           }}
         >
-          KM<span style={{ color: "var(--color-cyber-pink)" }}>.</span>
+          K<span style={{ color: "var(--accent)" }}>M</span>T
+          <span style={{ 
+            fontFamily: "var(--font-mono)", 
+            fontSize: "0.6rem", 
+            marginLeft: "var(--space-2)",
+            color: "var(--muted)",
+            fontWeight: "normal"
+          }}>
+            [SYS_RDY]
+          </span>
         </a>
 
         {/* Desktop nav */}
         <nav
+          className="nav-desktop"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
+            gap: "var(--space-6)",
           }}
-          className="hidden-mobile"
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
@@ -93,111 +102,106 @@ export default function Navbar() {
               }}
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.78rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--color-cyber-muted)",
+                fontSize: "0.75rem",
+                color: "var(--text-secondary)",
                 textDecoration: "none",
-                transition: "color 0.2s, text-shadow 0.2s",
-                position: "relative",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                transition: "color var(--duration) var(--ease)",
+                display: "flex",
+                alignItems: "center",
+                gap: "var(--space-2)",
+                borderBottom: "none",
               }}
               onMouseEnter={(e) => {
-                (e.target as HTMLAnchorElement).style.color =
-                  "var(--color-cyber-cyan)";
-                (e.target as HTMLAnchorElement).style.textShadow =
-                  "0 0 8px var(--color-cyber-cyan)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+                (e.currentTarget.querySelector('.nav-index') as HTMLElement).style.color = "var(--accent)";
               }}
               onMouseLeave={(e) => {
-                (e.target as HTMLAnchorElement).style.color =
-                  "var(--color-cyber-muted)";
-                (e.target as HTMLAnchorElement).style.textShadow = "none";
+                (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-secondary)";
+                (e.currentTarget.querySelector('.nav-index') as HTMLElement).style.color = "var(--muted)";
               }}
             >
+              <span 
+                className="nav-index"
+                style={{ 
+                  fontSize: "0.65rem", 
+                  color: "var(--muted)",
+                  transition: "color var(--duration) var(--ease)"
+                }}
+              >
+                0{index + 1}
+              </span>
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger (Industrial lines) */}
         <button
           id="mobile-menu-btn"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
+          className="nav-hamburger"
           style={{
             background: "none",
-            border:
-              "1px solid " +
-              (isOpen ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.3)"),
-            color: "var(--color-cyber-cyan)",
-            padding: "0.4rem 0.6rem",
+            border: "none",
+            color: "var(--text)",
             cursor: "pointer",
             display: "none",
+            padding: "var(--space-2)",
           }}
-          className="mobile-menu-btn"
         >
           <div
             style={{
-              width: "18px",
-              height: "14px",
+              width: "24px",
+              height: "10px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
             }}
           >
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                transform: isOpen
-                  ? "rotate(45deg) translate(5px, 5px)"
-                  : undefined,
-              }}
-            />
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                opacity: isOpen ? 0 : 1,
-              }}
-            />
-            <span
-              style={{
-                display: "block",
-                height: "1px",
-                background: "currentColor",
-                transition: "all 0.3s",
-                transform: isOpen
-                  ? "rotate(-45deg) translate(5px, -5px)"
-                  : undefined,
-              }}
-            />
+            {[0, 1].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  height: "2px",
+                  background: "currentColor",
+                  transition: "all 0.3s var(--ease)",
+                  transform:
+                    i === 0 && isOpen
+                      ? "rotate(45deg) translate(2px, 2px)"
+                      : i === 1 && isOpen
+                      ? "rotate(-45deg) translate(4px, -3px)"
+                      : undefined,
+                  transformOrigin: "left center"
+                }}
+              />
+            ))}
           </div>
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Drop down severe box */}
       <div
+        className="nav-mobile"
         style={{
           overflow: "hidden",
-          maxHeight: isOpen ? "280px" : "0",
-          transition: "max-height 0.3s ease",
-          borderTop: isOpen ? "1px solid rgba(0,245,255,0.15)" : "none",
-          backgroundColor: "rgba(5,10,15,0.98)",
+          maxHeight: isOpen ? "400px" : "0",
+          transition: "max-height 0.4s var(--ease)",
+          backgroundColor: "var(--surface)",
+          borderBottom: isOpen ? "1px solid var(--border)" : "none",
         }}
-        className="mobile-nav"
       >
         <nav
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "0.5rem 1.5rem 1rem",
+            padding: "var(--space-6)",
           }}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link, index) => (
             <a
               key={link.href}
               href={link.href}
@@ -206,25 +210,23 @@ export default function Navbar() {
                 handleClick(link.href);
               }}
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.8rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "var(--color-cyber-muted)",
+                fontFamily: "var(--font-display)",
+                fontSize: "2rem",
+                fontWeight: 800,
+                color: "var(--text)",
                 textDecoration: "none",
-                padding: "0.75rem 0",
-                borderBottom: "1px solid rgba(0,245,255,0.08)",
+                textTransform: "uppercase",
+                padding: "var(--space-3) 0",
+                borderBottom: "1px solid var(--border)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              <span
-                style={{
-                  color: "var(--color-cyber-cyan)",
-                  marginRight: "0.5rem",
-                }}
-              >
-                &gt;
-              </span>
               {link.label}
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.875rem", color: "var(--accent)" }}>
+                0{index + 1}
+              </span>
             </a>
           ))}
         </nav>
@@ -232,12 +234,12 @@ export default function Navbar() {
 
       <style>{`
         @media (max-width: 767px) {
-          .hidden-mobile { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
+          .nav-desktop { display: none !important; }
+          .nav-hamburger { display: flex !important; }
         }
         @media (min-width: 768px) {
-          .mobile-menu-btn { display: none !important; }
-          .mobile-nav { display: none !important; }
+          .nav-hamburger { display: none !important; }
+          .nav-mobile { display: none !important; }
         }
       `}</style>
     </header>

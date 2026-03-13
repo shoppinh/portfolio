@@ -1,145 +1,100 @@
 const interests = [
   {
-    id: "distributed-systems",
+    id: "DISTRIBUTED_SYS",
     title: "Distributed Systems",
-    description:
-      "Designing fault-tolerant systems that scale horizontally across multiple nodes.",
-    icon: "⚡",
-    accent: "var(--color-cyber-cyan)",
+    description: "Designing fault-tolerant systems scaling horizontally across multiple operational nodes.",
   },
   {
-    id: "cloud-computing",
+    id: "CLOUD_NAT",
     title: "Cloud Computing",
-    description:
-      "Leveraging cloud-native infrastructure for scalable, cost-efficient deployments.",
-    icon: "☁",
-    accent: "var(--color-cyber-pink)",
+    description: "Orchestrating cloud-native infrastructure for aggressive, scalable deployments.",
   },
   {
-    id: "software-architecture",
-    title: "Software Architecture",
-    description:
-      "Crafting clean, modular architectures that balance complexity and maintainability.",
-    icon: "🏗",
-    accent: "var(--color-cyber-yellow)",
+    id: "SOFT_ARCH",
+    title: "System Architecture",
+    description: "Drafting strict, modular architectures balancing severe complexity with ultimate maintainability.",
   },
   {
-    id: "microservices",
+    id: "MICRO_SVCS",
     title: "Microservices",
-    description:
-      "Breaking monoliths into independently deployable, loosely coupled services.",
-    icon: "🔧",
-    accent: "var(--color-cyber-cyan)",
+    description: "Fracturing monoliths into independently deployable, brutally decoupled services.",
   },
   {
-    id: "scalable-backend",
-    title: "Scalable Backend Systems",
-    description:
-      "Building high-throughput APIs and data pipelines designed to handle demanding loads.",
-    icon: "📈",
-    accent: "var(--color-cyber-pink)",
+    id: "HIGH_TPUT",
+    title: "Scalable Backends",
+    description: "Engineering high-throughput data pipelines designed to withstand absolute load.",
   },
 ];
 
 export default function Interests() {
   return (
-    <section
-      id="interests"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-      }}
-    >
-      <div
-        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
-      >
-        <div style={{ marginBottom: "3.5rem" }}>
-          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-            &gt; SYS::RESEARCH
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.4rem",
-              fontWeight: 700,
-              color: "var(--color-cyber-text)",
-              letterSpacing: "0.03em",
-              marginBottom: "0.5rem",
-            }}
-          >
-            ENGINEERING INTERESTS
-          </h2>
-          <p style={{ color: "var(--color-cyber-muted)", fontSize: "0.85rem" }}>
-            // Areas of deep technical interest relevant to graduate research.
-          </p>
+    <section id="interests" className="section">
+      <div className="container">
+        {/* Header */}
+        <div className="grid-editorial" style={{ marginBottom: "var(--space-12)" }}>
+          <div>
+            <span className="section-label">Research_Domains</span>
+            <h2 style={{ borderBottom: "none" }}>Engineering Focus</h2>
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: "var(--font-mono)" }}>
+              Core focus vectors.
+            </p>
+          </div>
         </div>
 
+        {/* Data Grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "1rem",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "1px",
+            background: "var(--border)",
+            border: "1px solid var(--border)",
           }}
         >
-          {interests.map((item) => (
+          {interests.map((item, index) => (
             <div
               key={item.id}
-              id={`interest-${item.id}`}
-              className="cyber-card"
+              className="fade-up"
               style={{
-                borderRadius: "4px",
-                padding: "1.5rem",
-                cursor: "default",
+                background: "var(--bg)",
+                padding: "var(--space-8) var(--space-6)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-4)",
+                animationDelay: `${index * 0.1}s`
               }}
             >
-              {/* Icon with neon bg */}
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  background: `${item.accent}18`,
-                  border: `1px solid ${item.accent}50`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.3rem",
-                  marginBottom: "1rem",
-                }}
-              >
-                {item.icon}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h3
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: 800,
+                    color: "var(--text)",
+                    margin: 0,
+                    letterSpacing: "-0.02em",
+                    textTransform: "uppercase"
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "var(--muted)" }}>
+                  [{item.id}]
+                </span>
               </div>
-
-              <h3
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "1.05rem",
-                  fontWeight: 600,
-                  color: "var(--color-cyber-text)",
-                  letterSpacing: "0.03em",
-                  marginBottom: "0.6rem",
-                }}
-              >
-                {item.title}
-              </h3>
+              
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.8rem",
-                  color: "var(--color-cyber-muted)",
-                  lineHeight: 1.7,
+                  fontSize: "0.85rem",
+                  color: "var(--text-secondary)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                  fontFamily: "var(--font-mono)"
                 }}
               >
                 {item.description}
               </p>
-
-              {/* Bottom accent bar */}
-              <div
-                style={{
-                  marginTop: "1.25rem",
-                  height: "1px",
-                  background: `linear-gradient(to right, ${item.accent}60, transparent)`,
-                }}
-              />
             </div>
           ))}
         </div>

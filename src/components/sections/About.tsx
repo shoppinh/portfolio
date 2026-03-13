@@ -1,100 +1,45 @@
 export default function About() {
   return (
-    <section
-      id="about"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 1.5rem",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "3rem",
-            alignItems: "start",
-          }}
-        >
+    <section id="about" className="section">
+      <div className="container">
+        <div className="grid-editorial">
           {/* Label + heading */}
           <div>
-            <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-              &gt; SYS::ABOUT
-            </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "2.4rem",
-                fontWeight: 700,
-                color: "var(--color-cyber-text)",
-                letterSpacing: "0.03em",
-                marginBottom: 0,
-              }}
-            >
-              WHO I AM
-            </h2>
+            <span className="section-label">Identity_Module</span>
+            <h2 style={{ borderBottom: "none", marginBottom: "var(--space-4)" }}>Who I Am</h2>
+            <div style={{ width: "40px", height: "2px", background: "var(--accent)", marginBottom: "var(--space-8)" }} />
           </div>
 
           {/* Content */}
           <div
-            className="neon-border-left"
             style={{
-              gridColumn: "span 2",
               display: "flex",
               flexDirection: "column",
-              gap: "1.25rem",
-              color: "var(--color-cyber-muted)",
-              lineHeight: 1.9,
-              fontSize: "0.95rem",
+              gap: "var(--space-6)",
+              paddingLeft: "var(--space-6)",
+              borderLeft: "1px solid var(--border)",
             }}
           >
-            <p>
-              I am a full-stack software engineer with professional experience
-              in building scalable web and mobile applications.
+            <p style={{ fontSize: "1.2rem", color: "var(--text)", lineHeight: 1.6, maxWidth: "100%" }}>
+              I am a full-stack software engineer with more than four years of professional experience building resilient web and mobile applications for enterprise environments.
             </p>
-            <p>
-              My work focuses on modern frontend frameworks such as{" "}
-              <span className="neon-cyan" style={{ fontWeight: 600 }}>
-                React
-              </span>{" "}
-              and{" "}
-              <span className="neon-cyan" style={{ fontWeight: 600 }}>
-                Next.js
-              </span>
-              , backend systems using{" "}
-              <span className="neon-pink" style={{ fontWeight: 600 }}>
-                NestJS
-              </span>{" "}
-              and{" "}
-              <span className="neon-pink" style={{ fontWeight: 600 }}>
-                ASP.NET Core
-              </span>
-              , and cloud infrastructure automation using{" "}
-              <span
-                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
-              >
-                Azure DevOps
-              </span>{" "}
-              and{" "}
-              <span
-                style={{ color: "var(--color-cyber-yellow)", fontWeight: 600 }}
-              >
-                Terraform
-              </span>
-              .
+            
+            <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
+              My engineering focus is distributed across modern frontend architectures—<strong style={{ color: "var(--accent)" }}>React</strong> and <strong style={{ color: "var(--accent)" }}>Next.js</strong>—and scalable backend services powered by <strong style={{ color: "var(--text)" }}>NestJS</strong> and <strong style={{ color: "var(--text)" }}>ASP.NET Core</strong>. 
+              I automate cloud infrastructure seamlessly using <span className="tag">Azure DevOps</span> and <span className="tag">Terraform</span>.
             </p>
-            <p>
-              I am particularly interested in distributed systems, scalable
-              architectures and cloud computing.
+            
+            <p style={{ fontSize: "0.9rem", maxWidth: "100%" }}>
+              I am obsessed with distributed systems, cloud computing, and the severe, uncompromising engineering decisions required to make systems reliable under absolute scale. 
+              Currently seeking to deepen theoretical knowledge through graduate studies in computer science.
             </p>
+
+            <div style={{ marginTop: "var(--space-4)" }}>
+              <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
+                <span className="tag" style={{ color: "var(--text)" }}>[STATUS] ACTIVE_SEEKING</span>
+                <span className="tag" style={{ color: "var(--text)" }}>[BASE] VIETNAM_HANOI</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

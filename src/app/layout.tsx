@@ -1,39 +1,39 @@
 import type { Metadata } from "next";
-import { Rajdhani, Share_Tech_Mono } from "next/font/google";
+import { Syne, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const rajdhani = Rajdhani({
+const syne = Syne({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
+  variable: "--font-syne",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const shareTechMono = Share_Tech_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Kien Mac Trung — Software Engineer",
   description:
-    "Portfolio of Kien Mac Trung, full-stack developer specialized in scalable systems.",
+    "Portfolio of Kien Mac Trung, specializing in scalable systems, microservices, and modern frontend architecture.",
   keywords: [
     "software engineer",
     "full-stack developer",
     "React",
-    "NextJS",
+    "Next.js",
     "distributed systems",
+    "microservices",
   ],
   authors: [{ name: "Kien Mac Trung" }],
   openGraph: {
     title: "Kien Mac Trung — Software Engineer",
     description:
-      "Portfolio of Kien Mac Trung, full-stack developer specialized in scalable systems.",
+      "Portfolio of Kien Mac Trung, specializing in scalable systems, microservices, and modern frontend architecture.",
     type: "website",
   },
 };
@@ -46,9 +46,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${rajdhani.variable} ${shareTechMono.variable}`}
+      className={`${syne.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <div className="noise-overlay" />
         <Navbar />
         <main>{children}</main>
         <Footer />

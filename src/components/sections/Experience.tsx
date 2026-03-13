@@ -5,7 +5,7 @@ const experiences = [
     role: "Full‑Stack Developer",
     period: "2022 — Present",
     summary:
-      "Developing scalable web and mobile applications for enterprise clients using modern frontend frameworks and backend microservices.",
+      "Engineered scalable e-commerce platforms and high-traffic backend services using NestJS and ASP.NET Core. Optimized infrastructure availability through Azure DevOps automation and Terraform-led IaaS deployments.",
     isCurrent: true,
   },
   {
@@ -14,185 +14,73 @@ const experiences = [
     role: "Frontend Developer",
     period: "2021 — 2022",
     summary:
-      "Built and maintained frontend interfaces for client-facing web applications.",
+      "Constructed high-performance web interfaces with modern JavaScript frameworks. Focused on cross-browser compatibility and sub-second load optimizations for client-facing systems.",
     isCurrent: false,
   },
   {
     id: "vmg",
     company: "VMG Media",
-    role: "Web Development Intern",
+    role: "Web Dev Intern",
     period: "2020",
     summary:
-      "Contributed to web development projects, gaining hands-on industry experience.",
+      "Assimilated into production workflows, developing monitoring interfaces for autonomous driving systems. Implemented real-time data visualization using Java and HTML/CSS/JS.",
     isCurrent: false,
   },
 ];
 
 export default function Experience() {
   return (
-    <section
-      id="experience"
-      style={{
-        padding: "6rem 0",
-        borderTop: "1px solid rgba(0,245,255,0.1)",
-      }}
-    >
-      <div
-        style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 1.5rem" }}
-      >
-        <div style={{ marginBottom: "3.5rem" }}>
-          <p className="sys-label" style={{ marginBottom: "0.5rem" }}>
-            &gt; SYS::CAREER
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.4rem",
-              fontWeight: 700,
-              color: "var(--color-cyber-text)",
-              letterSpacing: "0.03em",
-            }}
-          >
-            EXPERIENCE
-          </h2>
+    <section id="experience" className="section">
+      <div className="container">
+        {/* Header */}
+        <div className="grid-editorial" style={{ marginBottom: "var(--space-12)" }}>
+          <div>
+            <span className="section-label">Log.Career</span>
+            <h2 style={{ borderBottom: "none" }}>Experience</h2>
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              Professional deployment history. Sorted chronologically, descending.
+            </p>
+          </div>
         </div>
 
-        <div style={{ position: "relative" }}>
-          {/* Vertical neon timeline line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "15px",
-              top: "8px",
-              bottom: "8px",
-              width: "1px",
-              background:
-                "linear-gradient(to bottom, var(--color-cyber-cyan), rgba(0,245,255,0.1))",
-              boxShadow: "0 0 6px rgba(0,245,255,0.4)",
-            }}
-          />
-
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}
-          >
-            {experiences.map((exp) => (
-              <div
-                key={exp.id}
-                id={`exp-${exp.id}`}
-                style={{
-                  position: "relative",
-                  paddingLeft: "52px",
-                }}
-              >
-                {/* Timeline node */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: "4px",
-                    width: "30px",
-                    height: "30px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {/* Outer ring */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: "26px",
-                      height: "26px",
-                      border: `1px solid ${exp.isCurrent ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.2)"}`,
-                      background: "var(--color-cyber-bg)",
-                    }}
-                  />
-                  {/* Inner dot */}
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "10px",
-                      height: "10px",
-                      background: exp.isCurrent
-                        ? "var(--color-cyber-cyan)"
-                        : "rgba(0,245,255,0.25)",
-                      boxShadow: exp.isCurrent
-                        ? "0 0 10px var(--color-cyber-cyan), 0 0 20px rgba(0,245,255,0.4)"
-                        : "none",
-                      animation: exp.isCurrent
-                        ? "neon-pulse 2s ease-in-out infinite"
-                        : undefined,
-                    }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      alignItems: "flex-start",
-                      justifyContent: "space-between",
-                      gap: "0.5rem",
-                      marginBottom: "0.4rem",
-                    }}
-                  >
-                    <div>
-                      <h3
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "1.2rem",
-                          fontWeight: 700,
-                          color: "var(--color-cyber-text)",
-                          letterSpacing: "0.04em",
-                          marginBottom: "0.15rem",
-                        }}
-                      >
-                        {exp.company}
-                      </h3>
-                      <p
-                        className="neon-pink"
-                        style={{
-                          fontSize: "0.8rem",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
-                        {exp.role}
-                      </p>
-                    </div>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.7rem",
-                        letterSpacing: "0.1em",
-                        padding: "0.25rem 0.75rem",
-                        border: `1px solid ${exp.isCurrent ? "var(--color-cyber-cyan)" : "rgba(0,245,255,0.15)"}`,
-                        color: exp.isCurrent
-                          ? "var(--color-cyber-cyan)"
-                          : "var(--color-cyber-muted)",
-                        background: exp.isCurrent
-                          ? "rgba(0,245,255,0.06)"
-                          : "transparent",
-                      }}
-                    >
-                      {exp.period}
-                    </span>
-                  </div>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.83rem",
-                      color: "var(--color-cyber-muted)",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {exp.summary}
-                  </p>
-                </div>
+        {/* Data Rows */}
+        <div style={{ borderTop: "1px solid var(--border)" }}>
+          {experiences.map((exp) => (
+            <div key={exp.id} className="row-item" style={{ gap: "var(--space-6)" }}>
+              {/* Meta column */}
+              <div style={{ flex: "0 0 250px", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+                <h3 style={{ fontSize: "1.5rem", margin: 0, color: exp.isCurrent ? "var(--text)" : "var(--text-secondary)" }}>
+                  {exp.company}
+                </h3>
+                <span style={{ 
+                  fontFamily: "var(--font-mono)", 
+                  fontSize: "0.75rem", 
+                  color: exp.isCurrent ? "var(--accent)" : "var(--muted)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em"
+                }}>
+                  {exp.period}
+                </span>
+                {exp.isCurrent && (
+                  <span className="tag" style={{ alignSelf: "flex-start", marginTop: "var(--space-2)", borderColor: "var(--accent)", color: "var(--accent)" }}>
+                    ACTIVE
+                  </span>
+                )}
               </div>
-            ))}
-          </div>
+
+              {/* Data column */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
+                <div style={{ fontSize: "1rem", fontFamily: "var(--font-mono)", fontWeight: 600, color: "var(--text)" }}>
+                  {exp.role}
+                </div>
+                <p style={{ margin: 0, maxWidth: "100%", fontSize: "0.95rem" }}>
+                  {exp.summary}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
